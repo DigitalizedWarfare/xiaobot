@@ -3,16 +3,6 @@ const { promisify } = require('util');
 const { DBOTS_KEY, DBOTSORG_KEY } = process.env;
 
 class Util {
-	static cleanXML(str) {
-		return str
-			.replace(/<br \/>/g, '')
-			.replace(/&#039;/g, '\'')
-			.replace(/&mdash;/g, '—')
-			.replace(/(&#034;|&quot;)/g, '"')
-			.replace(/&#038;/g, '&')
-			.replace(/(\[i\]|\[\/i\])/g, '*');
-	}
-
 	static postStats(count, id) {
 		snekfetch
 			.post(`https://bots.discord.pw/api/bots/${id}/stats`)
