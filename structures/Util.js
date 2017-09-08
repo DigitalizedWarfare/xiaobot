@@ -1,6 +1,7 @@
 const snekfetch = require('snekfetch');
 const { promisify } = require('util');
 const { DBOTS_KEY, DBOTSORG_KEY } = process.env;
+const { stripIndents } = require('common-tags');
 
 class Util {
 	static postStats(count, id) {
@@ -16,21 +17,6 @@ class Util {
 			.send({ server_count: count })
 			.then(() => console.log('[DBOTSORG] Successfully posted to Discord Bots Org.'))
 			.catch(err => console.error(`[DBOTSORG] Failed to post to Discord Bots Org. ${err}`));
-	}
-
-	static filterTopics(channels, setting) {
-		return channels.filter(c => {
-			if (c.type !== 'text' || !c.topic || !c.permissionsFor(c.client.user).has('SEND_MESSAGES')) return false;
-			return c.topic.includes(`<${setting}>`);
-		});
-	}
-
-	static parseTopic(topic, setting) {
-		const regex = new RegExp(`<${setting}>.+</${setting}>`, 'gi');
-		if (!regex.test(topic)) return '';
-		const parsed = topic.match(regex)[0];
-		const word = `<${setting}>`;
-		return parsed.slice(word.length, parsed.length - (word.length + 1));
 	}
 
 	static wait(time) {
