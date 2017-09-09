@@ -1,6 +1,6 @@
 {
   "name": "xiaobot",
-  "version": "38.0.0",
+  "version": "38.0.2",
   "description": "Your personal server companion.",
   "main": "Shard.js",
   "scripts": {
@@ -37,7 +37,7 @@
     "discord.js": "github:hydrabolt/discord.js",
     "discord.js-commando": "github:gawdl3y/discord.js-commando",
     "erlpack": "github:hammerandchisel/erlpack",
-    "node-opus": "^0.2.6",
+    "node-opus": "^0.2.7",
     "pg": "^6.4.2",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.8.2",

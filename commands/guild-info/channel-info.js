@@ -1,5 +1,13 @@
 const Command = require('../../structures/Command');
 const { MessageEmbed } = require('discord.js');
+const types = {
+	dm: 'DM',
+	group: 'Group DM',
+	text: 'Text Channel',
+	voice: 'Voice Channel',
+	category: 'Channel Category',
+	unknown: 'Unknown'
+};
 
 module.exports = class ChannelInfoCommand extends Command {
 	constructor(client) {
@@ -32,6 +40,10 @@ module.exports = class ChannelInfoCommand extends Command {
 				channel.id, true)
 			.addField('❯ NSFW',
 				channel.nsfw ? 'Yes' : 'No', true)
+			.addField('❯ Category',
+				channel.parent ? channel.parent.name : 'None', true)
+			.addField('❯ Type',
+				types[channel.type], true)
 			.addField('❯ Creation Date',
 				channel.createdAt.toDateString(), true)
 			.addField('❯ Topic',
