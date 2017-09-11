@@ -2,6 +2,9 @@ const Command = require('../../structures/Command');
 const { createCanvas, loadImage, registerFont } = require('canvas');
 const snekfetch = require('snekfetch');
 const path = require('path');
+registerFont(path.join(__dirname, '..', '..', 'assets', 'fonts', 'Noto.ttf'), { family: 'Noto' });
+registerFont(path.join(__dirname, '..', '..', 'assets', 'fonts', 'Noto-CJK.otf'), { family: 'Noto' });
+registerFont(path.join(__dirname, '..', '..', 'assets', 'fonts', 'Noto-Emoji.ttf'), { family: 'Noto' });
 
 module.exports = class SteamCardCommand extends Command {
 	constructor(client) {
@@ -34,7 +37,6 @@ module.exports = class SteamCardCommand extends Command {
 			size: 512
 		});
 		try {
-			registerFont(path.join(__dirname, '..', '..', 'assets', 'fonts', 'Roboto.ttf'), { family: 'Roboto' });
 			const canvas = createCanvas(494, 568);
 			const ctx = canvas.getContext('2d');
 			const base = await loadImage(path.join(__dirname, '..', '..', 'assets', 'images', 'steam-card.png'));
@@ -44,7 +46,7 @@ module.exports = class SteamCardCommand extends Command {
 			ctx.fillRect(0, 0, 494, 568);
 			ctx.drawImage(avatar, 25, 25, 450, 450);
 			ctx.drawImage(base, 0, 0);
-			ctx.font = '30px Roboto';
+			ctx.font = '30px Noto';
 			ctx.fillText(member.displayName, 35, 48);
 			return msg.say({ files: [{ attachment: canvas.toBuffer(), name: 'steam-card.png' }] });
 		} catch (err) {
